@@ -55,6 +55,14 @@ public class Main {
         student1.schedule.put("saturday", saturday);
         student1.schedule.put("sunday", sunday);
 
+        student2.schedule.put("monday", monday);
+        student2.schedule.put("tuesday", tuesday);
+        student2.schedule.put("wednesday", wednesday);
+        student2.schedule.put("thursday", thursday);
+        student2.schedule.put("friday", friday);
+        student2.schedule.put("saturday", saturday);
+        student2.schedule.put("sunday", sunday);
+
 
         StudentsLessonsSaver.addStudent(student1);
         StudentsLessonsSaver.addStudent(student2);
@@ -105,10 +113,12 @@ public class Main {
                     saver.showLessons();
                     break;
                 case 7:
+                    int number = scanner.nextInt();
+                    System.out.println("Номер студента для расписания на неделю (не обращать внимания на первую цифру)");
+                    Student.showLessonsForWeek(number);
                     break;
                 case 8:
-                    int number = scanner.nextInt();
-                    Student.showLessonsForWeek(number);
+
                     break;
             }
 
