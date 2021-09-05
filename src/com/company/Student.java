@@ -19,12 +19,11 @@ public class Student implements Serializable {
     public HashMap<String,ArrayList<String>> schedule = new HashMap<>();
 
 
-//    Stream<String> stream = Arrays.stream(array);
-
     public static void showLessonsForDay(String day,int number){
         StudentsLessonsSaver.students.stream()
                 .filter(student->student.number == number)
-                .map(student->student.schedule.get(day));
+                .map(student->student.schedule.get(day))
+                .forEach(System.out::println);
     }
 
 

@@ -113,12 +113,21 @@ public class Main {
                     saver.showLessons();
                     break;
                 case 7:
+                    System.out.println("Номер студента для расписания на неделю " +
+                            "(не обращать внимания на первую цифру в результате)");
+
                     int number = scanner.nextInt();
-                    System.out.println("Номер студента для расписания на неделю (не обращать внимания на первую цифру)");
+
                     Student.showLessonsForWeek(number);
                     break;
                 case 8:
+                    System.out.println("День недели и номер студента для расписания на этот день " +
+                            "(не обращать внимания на первую цифру в результате)");
 
+                    line = scanner.next();
+                    number = scanner.nextInt();
+
+                    Student.showLessonsForDay(line.toLowerCase(),number);
                     break;
             }
 
