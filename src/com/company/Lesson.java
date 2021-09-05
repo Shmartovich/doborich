@@ -17,11 +17,13 @@ public class Lesson implements Serializable{
         this.endTime = endTime;
         this.lectureHall = lectureHall;
         this.lesson = lesson;
+        this.teacher = teacher;
     }
 
     @Override
     public String toString() {
-        return this.number + "|" + this.startTime + "|" + this.lesson + "|" + this.endTime + "|" + this.lectureHall;
+        return this.number + "|" + this.startTime + "|" + this.endTime + "|" +
+                this.lectureHall + "|" + this.teacher + "|" + this.lesson;
     }
 
 }

@@ -6,6 +6,9 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Student implements Serializable {
@@ -15,27 +18,84 @@ public class Student implements Serializable {
     public String surname;
     public String group;
 
-    public ArrayList<ArrayList<String>> schedule = new ArrayList<>();
+
+    public HashMap<String,ArrayList<String>> schedule = new HashMap<>();
+
 
 //    Stream<String> stream = Arrays.stream(array);
+
+    public static void showLessonsForDay(String day,int number){
+        StudentsLessonsSaver.students.stream()
+                .filter(student->student.number == number)
+                .map(student->student.schedule.get(day));
+    }
+
 
     public static void showLessonsForWeek(int number){
         try (FileInputStream fis = new FileInputStream("students.txt");
              ObjectInputStream in = new ObjectInputStream(fis)) {
-            ArrayList<Student> students = (ArrayList<Student>) in.readObject();
-            int count = 0;
+           StudentsLessonsSaver.students.stream()
+                    .filter(student->student.number == number)
+                    .map(student->student.schedule.get("monday"))
+                    .forEach(x-> System.out.println("monday " + x.toString()));
 
-            for(String lesson:students.get(0).schedule.get(0)){
-                System.out.println(lesson);
-            }
+           StudentsLessonsSaver.students.stream()
+                    .filter(student->student.number == number)
+                    .map(student->student.schedule.get("tuesday"))
+                    .forEach(x-> System.out.println("tuesday " + x.toString()));
 
-//            long c = students.stream()
+            StudentsLessonsSaver.students.stream()
+                    .filter(student->student.number == number)
+                    .map(student->student.schedule.get("wednesday"))
+                    .forEach(x-> System.out.println("wednesday " + x.toString()));
+
+            StudentsLessonsSaver.students.stream()
+                    .filter(student->student.number == number)
+                    .map(student->student.schedule.get("thursday"))
+                    .forEach(x-> System.out.println("thursday " + x.toString()));
+
+            StudentsLessonsSaver.students.stream()
+                    .filter(student->student.number == number)
+                    .map(student->student.schedule.get("friday"))
+                    .forEach(x-> System.out.println("friday " + x.toString()));
+
+            StudentsLessonsSaver.students.stream()
+                    .filter(student->student.number == number)
+                    .map(student->student.schedule.get("saturday"))
+                    .forEach(x-> System.out.println("saturday " + x.toString()));
+
+            StudentsLessonsSaver.students.stream()
+                    .filter(student->student.number == number)
+                    .map(student->student.schedule.get("sunday"))
+                    .forEach(x-> System.out.println("sunday " + x.toString()));
+
+
+//            student1.schedule.get("monday").stream()
+//                    .forEach(x -> System.out.println("monday " + x));
+
+//
+//            students.stream()
 //                    .filter(student->student.number == number)
 //                    .map(student->student.schedule)
-//                    .map(schedule->schedule.get(0))
-//                    .count();
+//                    .forEach(x->System.out.println("tuesday " + x.get("tuesday")));
+//            students.stream()
+//                    .filter(student->student.number == number)
+//                    .map(student->student.schedule)
+//                    .forEach(x->System.out.println("monday " + x.get("monday")));
+//            students.stream()
+//                    .filter(student->student.number == number)
+//                    .map(student->student.schedule)
+//                    .forEach(x->System.out.println("monday " + x.get("monday")));
+//            students.stream()
+//                    .filter(student->student.number == number)
+//                    .map(student->student.schedule)
+//                    .forEach(x->System.out.println("monday " + x.get("monday")));
+//            students.stream()
+//                    .filter(student->student.number == number)
+//                    .map(student->student.schedule)
+//                    .forEach(x->System.out.println("monday " + x.get("monday")));
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
